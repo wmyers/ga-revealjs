@@ -84,7 +84,8 @@ module.exports = function(grunt) {
 					unescape: false,
 					define: false,
 					exports: false
-				}
+				},
+				node:true // added to prevent 'require not defined' errors https://github.com/nDmitry/grunt-postcss/issues/59
 			},
 			files: [ 'Gruntfile.js', 'js/reveal.js' ]
 		},
@@ -96,6 +97,12 @@ module.exports = function(grunt) {
 					base: base,
 					livereload: true,
 					open: true
+					// onCreateServer: function(server, connect, options) {
+	        //   var io = require('socket.io').listen(server);
+	        //   io.sockets.on('connection', function(socket) {
+	        //     // do something with socket
+	        //   });
+	        // }
 				}
 			}
 		},
