@@ -146,7 +146,18 @@
 				}
 			}
 
+			/* HACK START */
+			/*hack to show more of notes on small screen*/
+			#speaker-controls {
+			    top: 10%;
+			    width: 50%;
+			    height: 70%;
+					background: white;
+			}
+			/* HACK END */
+
 		</style>
+
 	</head>
 
 	<body>
@@ -303,6 +314,23 @@
 				upcomingSlide.setAttribute( 'height', 512 );
 				upcomingSlide.setAttribute( 'src', upcomingURL );
 				document.querySelector( '#upcoming-slide' ).appendChild( upcomingSlide );
+
+				// HACK START
+				//hack to make buttons bigger on a small screen
+				var css = '.reveal .controls .navigate-right, .reveal .controls .navigate-right.enabled {border-width: 36px; left: 84px;}\n';
+				css += '.reveal .controls .navigate-left, .reveal .controls .navigate-left.enabled {border-width: 36px;}';
+				var style = document.createElement('style');
+				style.type = 'text/css';
+				if (style.styleSheet){
+					style.styleSheet.cssText = css;
+				} else {
+					style.appendChild(document.createTextNode(css));
+				}
+				setTimeout(function(){
+					console.log("%$%$%$%$ currentSlide style buttons hack");
+					currentSlide.contentDocument.body.appendChild(style);
+				}, 1000);
+				// HACK END
 
 			}
 
